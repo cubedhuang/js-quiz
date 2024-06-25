@@ -1,0 +1,155 @@
+<script lang="ts">
+	import Answers from "$lib/Answers.svelte";
+</script>
+
+# How well do you _really_ know JavaScript?
+
+It's pretty well known that JavaScript has strange syntax and semantics.
+Let's see how familiar you are with them! This quiz's format is mostly
+inspired by [this Java quiz](https://goldenstack.net/blog/java_quiz).
+
+---
+
+## 1.
+
+Consider the following code segment.
+
+```javascript
+function get(array) {
+	return array.at('start');
+}
+```
+
+What is the result of calling the `get` function with the
+array `['first', 'second', 'third']`?
+
+<Answers correct="a">
+	<p slot="a">
+		<code>"first"</code>
+	</p>
+	<p slot="b">
+		<code>"second"</code>
+	</p>
+	<p slot="c">
+		<code>undefined</code>
+	</p>
+	<p slot="d">
+		A <code>TypeError</code> is thrown because <code>at</code> is not an array method.
+	</p>
+	<p slot="e">
+		A <code>TypeError</code> is thrown because the <code>at</code> method takes an integer argument.
+	</p>
+</Answers>
+
+---
+
+## 2.
+
+Consider the following code segment.
+
+```js
+const a = '👋';
+const b = '👋🏽';
+console.log(a.length + b.length);
+```
+
+<p>What value will be printed to the console when the code is executed?</p>
+
+<Answers correct="e">
+	<p slot="a"><code>2</code></p>
+	<p slot="b"><code>3</code></p>
+	<p slot="c"><code>4</code></p>
+	<p slot="d"><code>5</code></p>
+	<p slot="e"><code>6</code></p>
+</Answers>
+
+---
+
+## 3.
+
+Which of the following is not <strong>always</strong> a reserved word in JavaScript?
+
+<Answers correct="d">
+	<p slot="a"><code>await</code></p>
+	<p slot="b"><code>class</code></p>
+	<p slot="c"><code>debugger</code></p>
+	<p slot="d"><code>enum</code></p>
+	<p slot="e"><code>void</code></p>
+</Answers>
+
+---
+
+## 4.
+
+Consider the following code segment.
+
+```js
+Array.prototype.push('hello');
+
+console.log(Array.prototype.length);
+```
+
+What value will be printed to the console when the code is executed?
+
+<Answers correct="b">
+	<p slot="a"><code>0</code></p>
+	<p slot="b"><code>1</code></p>
+	<p slot="c"><code>undefined</code></p>
+	<p slot="d">
+		A <code>TypeError</code> is thrown because <code>push</code> does not exist on <code>Array.prototype</code>.
+	</p>
+	<p slot="e">
+		A <code>TypeError</code> is thrown because the reference to <code>this</code> when <code>push</code> is called is <code>undefined</code>.
+	</p>
+</Answers>
+
+---
+
+## 5.
+
+Which of the following code segments are syntactically valid?
+
+1. `x++y`
+2. `x+++y`
+3. `x+++++y`
+
+<Answers correct="b">
+	<p slot="a"><strong>I</strong> only</p>
+	<p slot="b"><strong>II</strong> only</p>
+	<p slot="c"><strong>I</strong> and <strong>III</strong> only</p>
+	<p slot="d"><strong>II</strong> and <strong>III</strong> only</p>
+	<p slot="e"><strong>I</strong>, <strong>II</strong>, and <strong>III</strong></p>
+</Answers>
+
+---
+
+## 6.
+
+Consider the following code segment.
+
+```js
+const history = [];
+
+function tag(literals, ...values) {
+	history.push(literals);
+	return values;
+}
+
+function useTag() {
+	return tag`Hello, ${'world'}!`;
+}
+
+const a = useTag() === useTag();
+const b = history[0] === history[1];
+const c = history[0].raw.length === 1;
+```
+
+Of the values `a`, `b`, and `c`, which are `true`?
+
+<Answers correct="b">
+	<p slot="a"><code>a</code> only</p>
+	<p slot="b"><code>b</code> only</p>
+	<p slot="c"><code>a</code> and <code>b</code> only</p>
+	<p slot="d"><code>a</code> and <code>c</code> only</p>
+	<p slot="e">None of the above.</p>
+</Answers>

@@ -24,7 +24,8 @@
 </svelte:head>
 
 <div class="prose prose-blue mx-auto mb-40 mt-20 px-8 lg:prose-lg">
-	<h1>
+	<slot />
+	<!-- <h1>
 		How well do you <em>really</em> know JavaScript?
 	</h1>
 
@@ -181,35 +182,48 @@ function use() &lbrace;
 const a = use() === use();
 const b = history[0] === history[1];
 const c = tag`$&lbrace;'world'&rbrace;`[0] === tag`$&lbrace;'Hey!'&rbrace;`;</code
-		></pre>
+		></pre> -->
 </div>
 
 <style lang="postcss">
-	.prose pre {
+	.prose :global(pre) {
 		@apply overflow-x-auto;
 		scrollbar-width: thin;
-		scrollbar-color: theme(colors.gray.500) theme(colors.gray.800);
+		scrollbar-color: theme('colors.gray.500') theme('colors.gray.800');
 	}
 
-	.prose pre::-webkit-scrollbar {
+	.prose :global(pre::-webkit-scrollbar) {
 		width: 0.5em;
 		height: 0.5em;
 	}
 
-	.prose pre::-webkit-scrollbar-thumb {
-		background-color: theme(colors.gray.500);
+	.prose :global(pre::-webkit-scrollbar-thumb) {
+		background-color: theme('colors.gray.500');
 		border-radius: 0.25em;
 	}
 
-	.prose pre::-webkit-scrollbar-thumb:hover {
-		background-color: theme(colors.gray.800);
+	.prose :global(pre::-webkit-scrollbar-thumb:hover) {
+		background-color: theme('colors.gray.800');
 	}
 
-	.prose pre code {
+	.prose :global(pre code) {
 		@apply overflow-x-visible bg-inherit p-0 text-[1em];
 	}
 
-	.prose code:not(pre code) {
-		@apply text-blue-600 before:content-none after:content-none;
+	.prose :global(code:not(pre code)) {
+		@apply text-[1em] text-blue-600;
+	}
+
+	.prose :global(code:not(pre code)::before),
+	.prose :global(code:not(pre code)::after) {
+		content: none;
+	}
+
+	.prose :global(ol) {
+		@apply list-[upper-roman];
+	}
+
+	.prose :global(ol li) {
+		@apply my-1;
 	}
 </style>
