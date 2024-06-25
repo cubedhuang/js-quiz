@@ -4,14 +4,17 @@
 </script>
 
 <svelte:head>
-	<title>How well do you know JavaScript syntax and semantics?</title>
-	<meta name="description" content="Collected Miscellany - " />
+	<title>How well do you really know JavaScript?</title>
+	<meta
+		name="description"
+		content="Test your knowledge of JavaScript with this quiz!"
+	/>
 </svelte:head>
 
-<div
-	class="prose prose-sm prose-blue mx-auto mt-16 px-8 sm:prose-base lg:prose-lg prose-pre:p-0"
->
-	<h1>How well do you know JavaScript syntax and semantics?</h1>
+<div class="prose prose-blue mx-auto mb-40 mt-20 px-8 lg:prose-lg">
+	<h1>
+		How well do you <em>really</em> know JavaScript?
+	</h1>
 
 	<p>
 		It's pretty well known that JavaScript has strange syntax and semantics.
@@ -23,7 +26,39 @@
 		>.
 	</p>
 
+	<hr />
 	<h2>1.</h2>
+
+	<p>Consider the following code segment.</p>
+
+	<pre><code class="language-javascript" use:highlight
+			>function get(array) &lbrace;
+	return array.at("start");
+&rbrace;</code
+		></pre>
+
+	<p>
+		What is the result of calling the <code>get</code> function with the
+		array
+		<code>["first", "second", "third"]</code>?
+	</p>
+
+	<Answers correct="a">
+		<p slot="a"><code>"first"</code></p>
+		<p slot="b"><code>"second"</code></p>
+		<p slot="c"><code>undefined</code></p>
+		<p slot="d">
+			A <code>TypeError</code> is thrown because <code>at</code> is not an
+			array method.
+		</p>
+		<p slot="e">
+			A <code>TypeError</code> is thrown because the <code>at</code> method
+			takes an integer argument.
+		</p>
+	</Answers>
+
+	<hr />
+	<h2>2.</h2>
 
 	<p>Consider the following code segment.</p>
 
@@ -37,10 +72,90 @@ console.log(a.length + b.length);</code
 	<p>What value will be printed to the console when the code is executed?</p>
 
 	<Answers correct="e">
-		<p slot="a">2</p>
-		<p slot="b">3</p>
-		<p slot="c">4</p>
-		<p slot="d">5</p>
-		<p slot="e">6</p>
+		<p slot="a"><code>2</code></p>
+		<p slot="b"><code>3</code></p>
+		<p slot="c"><code>4</code></p>
+		<p slot="d"><code>5</code></p>
+		<p slot="e"><code>6</code></p>
+	</Answers>
+
+	<hr />
+	<h2>3.</h2>
+
+	<p>
+		Which of the following is not <strong>always</strong> a reserved word in
+		JavaScript?
+	</p>
+
+	<Answers correct="d">
+		<p slot="a"><code>class</code></p>
+		<p slot="b"><code>debugger</code></p>
+		<p slot="c"><code>enum</code></p>
+		<p slot="d"><code>await</code></p>
+		<p slot="e"><code>void</code></p>
+	</Answers>
+
+	<hr />
+	<h2>4.</h2>
+
+	<p>Consider the following code segment.</p>
+
+	<pre><code class="language-javascript" use:highlight
+			>Array.prototype.push("hello");
+console.log(Array.prototype.length);</code
+		></pre>
+
+	<p>What value will be printed to the console when the code is executed?</p>
+
+	<Answers correct="b">
+		<p slot="a"><code>0</code></p>
+		<p slot="b"><code>1</code></p>
+		<p slot="c"><code>undefined</code></p>
+		<p slot="d">
+			A <code>TypeError</code> is thrown because <code>push</code> does
+			not exist on <code>Array.prototype</code>.
+		</p>
+		<p slot="e">
+			A <code>TypeError</code> is thrown because the reference to
+			<code>this</code> when <code>push</code> is called is
+			<code>undefined</code>.
+		</p>
+	</Answers>
+
+	<hr />
+	<h2>5.</h2>
+
+	<p>Consider the following code segment.</p>
+
+	<pre><code class="language-javascript" use:highlight
+			>Array.prototype.push("hello");
+console.log(Array.prototype.length);</code
+		></pre>
+
+	<p>What value will be printed to the console when the code is executed?</p>
+
+	<Answers correct="b">
+		<p slot="a"><code>0</code></p>
+		<p slot="b"><code>1</code></p>
+		<p slot="c"><code>undefined</code></p>
+		<p slot="d">
+			A <code>TypeError</code> is thrown because <code>push</code> does
+			not exist on <code>Array.prototype</code>.
+		</p>
+		<p slot="e">
+			A <code>TypeError</code> is thrown because the reference to
+			<code>this</code> when <code>push</code> is called is
+			<code>undefined</code>.
+		</p>
 	</Answers>
 </div>
+
+<style lang="postcss">
+	.prose pre code {
+		@apply bg-inherit p-0 text-[1em];
+	}
+
+	.prose code:not(pre code) {
+		@apply text-blue-600 before:content-none after:content-none;
+	}
+</style>

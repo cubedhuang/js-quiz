@@ -16,7 +16,7 @@
 	}
 </script>
 
-<div class="grid gap-2">
+<div class="grid gap-1">
 	<button class="option group" on:click={() => guess('a')} {disabled}>
 		<div
 			class="outline-2 outline-offset-2 outline-blue-500 group-focus-visible:outline group-hve:border-blue-500 group-hve:bg-blue-50"
@@ -61,11 +61,11 @@
 
 <style lang="postcss">
 	.option {
-		@apply flex w-full gap-3 outline-none;
+		@apply flex w-full gap-3 text-left outline-none;
 	}
 
 	.option div {
-		@apply size-6 translate-y-1 rounded-full border-2 p-0.5 transition;
+		@apply size-6 shrink-0 translate-y-1 rounded-full border-2 p-0.5 transition;
 	}
 
 	.option div.correct {
