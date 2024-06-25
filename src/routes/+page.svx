@@ -25,10 +25,10 @@ array `['first', 'second', 'third']`?
 
 <Answers correct="a">
 	<p slot="a">
-		<code>"first"</code>
+		<code>'first'</code>
 	</p>
 	<p slot="b">
-		<code>"second"</code>
+		<code>'second'</code>
 	</p>
 	<p slot="c">
 		<code>undefined</code>
@@ -152,4 +152,18 @@ Of the values `a`, `b`, and `c`, which are `true`?
 	<p slot="c"><code>a</code> and <code>b</code> only</p>
 	<p slot="d"><code>a</code> and <code>c</code> only</p>
 	<p slot="e">None of the above.</p>
+</Answers>
+
+---
+
+## 7.
+
+What is the result when the expression `parseFloat('Infinity') === Number.POSITIVE_INFINITY` is evaluated?
+
+<Answers correct="a">
+	<p slot="a"><code>true</code></p>
+	<p slot="b"><code>false</code>, because <code>parseFloat('Infinity')</code> returns <code>Number.POSITIVE_INFINITY</code>, which is not considered equal to itself.</p>
+	<p slot="c"><code>false</code>, because <code>parseFloat('Infinity')</code> returns <code>NaN</code> because <code>'Infinity'</code> is not a valid number.</p>
+	<p slot="d"><code>false</code>, because <code>parseFloat('Infinity')</code> returns <code>Infinity</code>, which is not considered equal to <code>Number.POSITIVE_INFINITY</code>.</p>
+	<p slot="e">A <code>TypeError</code> is thrown because <code>parseFloat</code> only accepts finite numbers.</p>
 </Answers>
