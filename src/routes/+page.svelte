@@ -1,6 +1,18 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	import Answers from '$lib/Answers.svelte';
 	import { highlight } from '$lib/highlight';
+
+	onMount(() => {
+		console.log('%c👋 Hey there!', 'font-size: 3em; font-weight: bold;');
+		console.log(
+			'Are you %creally%c using DevTools for this quiz?',
+			'font-style: italic;',
+			''
+		);
+		console.log("You're better than that, right?");
+	});
 </script>
 
 <svelte:head>
@@ -148,11 +160,53 @@ console.log(Array.prototype.length);</code
 			<code>undefined</code>.
 		</p>
 	</Answers>
+
+	<hr />
+	<h2>6.</h2>
+
+	<p>Consider the following code segment.</p>
+
+	<pre><code class="language-javascript" use:highlight
+			>const history = [];
+
+function tag(literals, ...values) &lbrace;
+  history.push(literals);
+  return values;
+&rbrace;
+
+function use() &lbrace;
+  return tag`Hello, $&lbrace;'world'&rbrace;!`;
+&rbrace;
+
+const a = use() === use();
+const b = history[0] === history[1];
+const c = tag`$&lbrace;'world'&rbrace;`[0] === tag`$&lbrace;'Hey!'&rbrace;`;</code
+		></pre>
 </div>
 
 <style lang="postcss">
+	.prose pre {
+		@apply overflow-x-auto;
+		scrollbar-width: thin;
+		scrollbar-color: theme(colors.gray.500) theme(colors.gray.800);
+	}
+
+	.prose pre::-webkit-scrollbar {
+		width: 0.5em;
+		height: 0.5em;
+	}
+
+	.prose pre::-webkit-scrollbar-thumb {
+		background-color: theme(colors.gray.500);
+		border-radius: 0.25em;
+	}
+
+	.prose pre::-webkit-scrollbar-thumb:hover {
+		background-color: theme(colors.gray.800);
+	}
+
 	.prose pre code {
-		@apply bg-inherit p-0 text-[1em];
+		@apply overflow-x-visible bg-inherit p-0 text-[1em];
 	}
 
 	.prose code:not(pre code) {
