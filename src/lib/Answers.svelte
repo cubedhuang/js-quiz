@@ -11,7 +11,7 @@
 
 		answer = option;
 
-		$correctAnswers += isCorrect;
+		$correctAnswers += isCorrect ? 1 : 0;
 		$answeredQuestions += 1;
 	}
 </script>
