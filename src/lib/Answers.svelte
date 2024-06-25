@@ -19,7 +19,7 @@
 <div class="grid gap-2">
 	<button class="option group" on:click={() => guess('a')} {disabled}>
 		<div
-			class="group-hve:border-blue-500 group-hve:bg-blue-50 outline-2 outline-offset-2 outline-blue-500 group-focus-visible:outline"
+			class="outline-2 outline-offset-2 outline-blue-500 group-focus-visible:outline group-hve:border-blue-500 group-hve:bg-blue-50"
 			class:correct={disabled && correct === 'a'}
 			class:incorrect={disabled && correct !== 'a' && answer === 'a'}
 		></div>
@@ -27,7 +27,7 @@
 	</button>
 	<button class="option group" on:click={() => guess('b')} {disabled}>
 		<div
-			class="group-hve:border-blue-500 group-hve:bg-blue-50 outline-2 outline-offset-2 outline-blue-500 group-focus-visible:outline"
+			class="outline-2 outline-offset-2 outline-blue-500 group-focus-visible:outline group-hve:border-blue-500 group-hve:bg-blue-50"
 			class:correct={disabled && correct === 'b'}
 			class:incorrect={disabled && correct !== 'b' && answer === 'b'}
 		></div>
@@ -35,7 +35,7 @@
 	</button>
 	<button class="option group" on:click={() => guess('c')} {disabled}>
 		<div
-			class="group-hve:border-blue-500 group-hve:bg-blue-50 outline-2 outline-offset-2 outline-blue-500 group-focus-visible:outline"
+			class="outline-2 outline-offset-2 outline-blue-500 group-focus-visible:outline group-hve:border-blue-500 group-hve:bg-blue-50"
 			class:correct={disabled && correct === 'c'}
 			class:incorrect={disabled && correct !== 'c' && answer === 'c'}
 		></div>
@@ -43,7 +43,7 @@
 	</button>
 	<button class="option group" on:click={() => guess('d')} {disabled}>
 		<div
-			class="group-hve:border-blue-500 group-hve:bg-blue-50 outline-2 outline-offset-2 outline-blue-500 group-focus-visible:outline"
+			class="outline-2 outline-offset-2 outline-blue-500 group-focus-visible:outline group-hve:border-blue-500 group-hve:bg-blue-50"
 			class:correct={disabled && correct === 'd'}
 			class:incorrect={disabled && correct !== 'd' && answer === 'd'}
 		></div>
@@ -51,7 +51,7 @@
 	</button>
 	<button class="option group" on:click={() => guess('e')} {disabled}>
 		<div
-			class="group-hve:border-blue-500 group-hve:bg-blue-50 outline-2 outline-offset-2 outline-blue-500 group-focus-visible:outline"
+			class="outline-2 outline-offset-2 outline-blue-500 group-focus-visible:outline group-hve:border-blue-500 group-hve:bg-blue-50"
 			class:correct={disabled && correct === 'e'}
 			class:incorrect={disabled && correct !== 'e' && answer === 'e'}
 		></div>
