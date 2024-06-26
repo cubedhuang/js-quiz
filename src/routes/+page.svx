@@ -516,8 +516,9 @@ Which of the following code segments will run and print `'Hello world!'` to the 
    (new class {
    	constructor() {
    		console.log('Hello world!');
+   		return Object.create(null);
    	}
-   })();
+   }());
    ```
 2. ```js
    // prettier-ignore
@@ -737,13 +738,162 @@ Which of the following expressions is syntactically valid?
 
 ## 17.
 
+Consider the following code segment.
+
+```js
+class Polygon {
+	constructor() {
+		this.name = 'Polygon';
+	}
+}
+
+class Rectangle {
+	constructor() {
+		this.name = 'Rectangle';
+	}
+}
+
+class Square extends Polygon {
+	constructor() {
+		super();
+	}
+}
+
+Object.setPrototypeOf(Square, Rectangle);
+
+const square = new Square();
+
+console.log(square instanceof Polygon);
+console.log(square instanceof Rectangle);
+console.log(square.name);
+```
+
+What three values are printed to the console when the code is executed?
+
+<Answers>
+<Answer correct>
+
+`true false 'Rectangle'`
+
+</Answer>
+<Answer>
+
+`false true 'Rectangle'`
+
+</Answer>
+<Answer>
+
+`true false 'Polygon'`
+
+</Answer>
+<Answer>
+
+`false true 'Polygon'`
+
+</Answer>
+<Answer>
+
+None of the above
+
+</Answer>
+</Answers>
+
 ---
 
 ## 18.
 
+Consider the following code segment.
+
+```js
+class MyClass {
+	static a = console.log('A');
+	static {
+		console.log('B');
+	}
+	static b = console.log('C');
+	static {
+		console.log('D');
+	}
+}
+```
+
+What is the order in which the letters `A`, `B`, `C`, and `D` are printed to the console when the code is executed?
+
+<Answers>
+<Answer correct>
+
+`A B C D`
+
+</Answer>
+<Answer>
+
+`A C B D`
+
+</Answer>
+<Answer>
+
+`B D A C`
+
+</Answer>
+<Answer>
+
+`B A D C`
+
+</Answer>
+<Answer>
+
+A `SyntaxError` is thrown because a class may only have one static initializer block.
+
+</Answer>
+</Answers>
+
 ---
 
 ## 19.
+
+Consider the following code segment.
+
+```js
+const { proxy, revoke } = Proxy.revocable(['Hello!'], {
+	get: (target, prop) => prop
+});
+
+console.log(proxy.message);
+
+revoke();
+
+console.log(`${proxy}`);
+```
+
+What is printed to the console when the code is executed?
+
+<Answers>
+<Answer>
+
+`'message'` and `1`
+
+</Answer>
+<Answer>
+
+`'message'` and `'Hello!'`
+
+</Answer>
+<Answer>
+
+`'message'` and `[object Array]`
+
+</Answer>
+<Answer>
+
+`'message'` and `[object Object]`
+
+</Answer>
+<Answer correct>
+
+`'message'` and a `TypeError` is thrown because arevoked proxy cannot be coerced to a string.
+
+</Answer>
+</Answers>
 
 ---
 
