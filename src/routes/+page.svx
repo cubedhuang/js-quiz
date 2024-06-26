@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { answeredQuestions, correctAnswers } from "$lib/stores";
+	import Answer from "$lib/Answer.svelte";
 	import Answers from "$lib/Answers.svelte";
 </script>
 
@@ -23,22 +25,32 @@ function get(array) {
 What is the result of calling the `get` function with the
 array `['first', 'second', 'third']`?
 
-<Answers correct="a">
-	<p slot="a">
-		<code>'first'</code>
-	</p>
-	<p slot="b">
-		<code>'second'</code>
-	</p>
-	<p slot="c">
-		<code>undefined</code>
-	</p>
-	<p slot="d">
-		A <code>TypeError</code> is thrown because <code>at</code> is not an array method.
-	</p>
-	<p slot="e">
-		A <code>TypeError</code> is thrown because the <code>at</code> method takes an integer argument.
-	</p>
+<Answers>
+<Answer correct>
+
+`'first'`
+
+</Answer>
+<Answer>
+
+`'second'`
+
+</Answer>
+<Answer>
+
+`undefined`
+
+</Answer>
+<Answer>
+
+A `TypeError` is thrown because `at` is not an array method.
+
+</Answer>
+<Answer>
+
+A `TypeError` is thrown because the `at` method takes an integer argument.
+
+</Answer>
 </Answers>
 
 ---
@@ -53,28 +65,68 @@ const b = '👋🏽';
 console.log(a.length + b.length);
 ```
 
-<p>What value will be printed to the console when the code is executed?</p>
+What value will be printed to the console when the code is executed?
 
-<Answers correct="e">
-	<p slot="a"><code>2</code></p>
-	<p slot="b"><code>3</code></p>
-	<p slot="c"><code>4</code></p>
-	<p slot="d"><code>5</code></p>
-	<p slot="e"><code>6</code></p>
+<Answers>
+<Answer>
+
+`2`
+
+</Answer>
+<Answer>
+
+`3`
+
+</Answer>
+<Answer>
+
+`4`
+
+</Answer>
+<Answer>
+
+`5`
+
+</Answer>
+<Answer correct>
+
+`6`
+
+</Answer>
 </Answers>
 
 ---
 
 ## 3.
 
-Which of the following is not <strong>always</strong> a reserved word in JavaScript?
+Which of the following is **not** always a reserved word?
 
-<Answers correct="d">
-	<p slot="a"><code>await</code></p>
-	<p slot="b"><code>class</code></p>
-	<p slot="c"><code>debugger</code></p>
-	<p slot="d"><code>enum</code></p>
-	<p slot="e"><code>void</code></p>
+<Answers>
+<Answer correct>
+
+`await`
+
+</Answer>
+<Answer>
+
+`class`
+
+</Answer>
+<Answer>
+
+`debugger`
+
+</Answer>
+<Answer>
+
+`enum`
+
+</Answer>
+<Answer>
+
+`void`
+
+</Answer>
 </Answers>
 
 ---
@@ -91,34 +143,70 @@ console.log(Array.prototype.length);
 
 What value will be printed to the console when the code is executed?
 
-<Answers correct="b">
-	<p slot="a"><code>0</code></p>
-	<p slot="b"><code>1</code></p>
-	<p slot="c"><code>undefined</code></p>
-	<p slot="d">
-		A <code>TypeError</code> is thrown because <code>push</code> does not exist on <code>Array.prototype</code>.
-	</p>
-	<p slot="e">
-		A <code>TypeError</code> is thrown because the reference to <code>this</code> when <code>push</code> is called is <code>undefined</code>.
-	</p>
+<Answers>
+<Answer>
+
+`0`
+
+</Answer>
+<Answer correct>
+
+`1`
+
+</Answer>
+<Answer>
+
+`undefined`
+
+</Answer>
+<Answer>
+
+A `TypeError` is thrown because `push` does not exist on `Array.prototype`.
+
+</Answer>
+<Answer>
+
+A `TypeError` is thrown because the reference to `this` when `push` is called is `undefined`.
+
+</Answer>
 </Answers>
 
 ---
 
 ## 5.
 
-Which of the following code segments are syntactically valid?
+Which of the following code segments are syntactically valid (i.e., does not throw a `SyntaxError`)?
 
 1. `x++y`
 2. `x+++y`
 3. `x+++++y`
 
-<Answers correct="b">
-	<p slot="a"><strong>I</strong> only</p>
-	<p slot="b"><strong>II</strong> only</p>
-	<p slot="c"><strong>I</strong> and <strong>III</strong> only</p>
-	<p slot="d"><strong>II</strong> and <strong>III</strong> only</p>
-	<p slot="e"><strong>I</strong>, <strong>II</strong>, and <strong>III</strong></p>
+<Answers>
+<Answer>
+
+**I** only
+
+</Answer>
+<Answer correct>
+
+**II** only
+
+</Answer>
+<Answer>
+
+**I** and **II** only
+
+</Answer>
+<Answer>
+
+**I** and **III** only
+
+</Answer>
+<Answer>
+
+None of the above
+
+</Answer>
 </Answers>
 
 ---
@@ -146,12 +234,32 @@ const c = history[0].raw.length === 1;
 
 Of the values `a`, `b`, and `c`, which are `true`?
 
-<Answers correct="b">
-	<p slot="a"><code>a</code> only</p>
-	<p slot="b"><code>b</code> only</p>
-	<p slot="c"><code>a</code> and <code>b</code> only</p>
-	<p slot="d"><code>a</code> and <code>c</code> only</p>
-	<p slot="e">None of the above.</p>
+<Answers>
+<Answer>
+
+`a` only
+
+</Answer>
+<Answer correct>
+
+`b` only
+
+</Answer>
+<Answer>
+
+`a` and `b` only
+
+</Answer>
+<Answer>
+
+`a` and `c` only
+
+</Answer>
+<Answer>
+
+None of the above
+
+</Answer>
 </Answers>
 
 ---
@@ -160,10 +268,515 @@ Of the values `a`, `b`, and `c`, which are `true`?
 
 What is the result when the expression `parseFloat('Infinity') === Number.POSITIVE_INFINITY` is evaluated?
 
-<Answers correct="a">
-	<p slot="a"><code>true</code></p>
-	<p slot="b"><code>false</code>, because <code>parseFloat('Infinity')</code> returns <code>Number.POSITIVE_INFINITY</code>, which is not considered equal to itself.</p>
-	<p slot="c"><code>false</code>, because <code>parseFloat('Infinity')</code> returns <code>NaN</code> because <code>'Infinity'</code> is not a valid number.</p>
-	<p slot="d"><code>false</code>, because <code>parseFloat('Infinity')</code> returns <code>Infinity</code>, which is not considered equal to <code>Number.POSITIVE_INFINITY</code>.</p>
-	<p slot="e">A <code>TypeError</code> is thrown because <code>parseFloat</code> only accepts finite numbers.</p>
+<Answers>
+<Answer correct>
+
+`true`
+
+</Answer>
+<Answer>
+
+`false`, because `parseFloat('Infinity')` returns `Number.POSITIVE_INFINITY`, which is not considered equal to itself.
+
+</Answer>
+<Answer>
+
+`false`, because `parseFloat('Infinity')` returns `NaN` because `'Infinity'` is not a valid number.
+
+</Answer>
+<Answer>
+
+`false`, because `parseFloat('Infinity')` returns `Infinity`, which is not considered equal to `Number.POSITIVE_INFINITY`.
+
+</Answer>
+<Answer>
+
+A `TypeError` is thrown because `parseFloat` only accepts finite numbers.
+
+</Answer>
 </Answers>
+
+---
+
+## 8.
+
+Consider the following code segment.
+
+```js
+function saferDivide(a, b) {
+	try {
+		return a / b;
+	} finally {
+		return 1;
+	}
+}
+
+const x = saferDivide(1, 0);
+const y = saferDivide(4, 2);
+
+console.log(x + y);
+```
+
+What is the value printed to the console when the code is executed?
+
+<Answers>
+<Answer correct>
+
+`2`
+
+</Answer>
+<Answer>
+
+`3`
+
+</Answer>
+<Answer>
+
+`Infinity`
+
+</Answer>
+<Answer>
+
+`NaN`
+
+</Answer>
+<Answer>
+
+A `SyntaxError` is thrown because `try` blocks must have a corresponding `catch` block.
+
+</Answer>
+</Answers>
+
+---
+
+## 9.
+
+Consider the following code segment.
+
+```js
+// prettier-ignore
+const wrap = value => { value };
+const array = [1, 2, 3].map(wrap);
+const items = array.toString();
+```
+
+What is the value of `items`?
+
+<Answers>
+<Answer correct>
+
+`',,'`
+
+</Answer>
+<Answer>
+
+`'1,2,3'`
+
+</Answer>
+<Answer>
+
+`'[object Array]'`
+
+</Answer>
+<Answer>
+
+`'undefined,undefined,undefined'`
+
+</Answer>
+<Answer>
+
+`'[object Object],[object Object],[object Object]'`
+
+</Answer>
+</Answers>
+
+---
+
+## 10.
+
+Consider the following code segment.
+
+```js
+let foo = { n: 1 };
+let bar = foo;
+let baz = foo;
+foo.x = foo = { n: 2 };
+bar.y = foo.y = bar = { n: 3 };
+```
+
+What are the values of `foo`, `bar`, and `baz` after the code is executed? Assume that `≈` means "deeply equal" and that self-reference is circular.
+
+<Answers>
+<Answer correct>
+
+```js
+foo = { n: 2, y: { n: 3 } };
+bar = { n: 3 };
+baz = {
+	n: 1,
+	x: { n: 2, y: { n: 3 } },
+	y: { n: 3 }
+};
+```
+
+</Answer>
+<Answer>
+
+```js
+foo = { n: 2, x: foo, y: bar };
+bar = { n: 3, y: bar };
+baz = { n: 1 };
+```
+
+</Answer>
+<Answer>
+
+```js
+foo = { n: 2, y: undefined };
+bar = { n: 3 };
+baz = {
+	n: 1,
+	x: { n: 2, y: undefined },
+	y: { n: 3 }
+};
+```
+
+</Answer>
+<Answer>
+
+```js
+foo = { n: 2 };
+bar = { n: 3, y: { n: 3 } };
+baz = {
+	n: 1,
+	x: { n: 2 },
+	y: { n: 3 }
+};
+```
+
+</Answer>
+<Answer>
+
+A `ReferenceError` is thrown because `foo` is reassigned before it is accessed.
+
+</Answer>
+</Answers>
+
+---
+
+## 11.
+
+Consider the following code segment.
+
+```js
+function f() {
+	return f;
+}
+console.log(new f() instanceof f);
+```
+
+What is the value printed to the console when the code is executed?
+
+<Answers>
+<Answer>
+
+`true`
+
+</Answer>
+<Answer correct>
+
+`false`
+
+</Answer>
+<Answer>
+
+A `TypeError` is thrown because `f` is not a constructor.
+
+</Answer>
+<Answer>
+
+A `TypeError` is thrown because an `instanceof` check cannot be performed on a function.
+
+</Answer>
+<Answer>
+
+A `RangeError` or `InternalError` (depending on the JavaScript engine) is thrown due to the maximum call stack size being exceeded.
+
+</Answer>
+</Answers>
+
+---
+
+## 12.
+
+Which of the following code segments will run and print `'Hello world!'` to the console without error?
+
+1. ```js
+   // prettier-ignore
+   (new class {
+   	constructor() {
+   		console.log('Hello world!');
+   	}
+   })();
+   ```
+2. ```js
+   // prettier-ignore
+   (new class {
+   	class() {
+   		console.log('Hello world!');
+   	}
+   }).class();
+   ```
+3. ```js
+   // prettier-ignore
+   (new class extends null {
+   	constructor() {
+   		console.log('Hello world!');
+   		return Object.create(null);
+   	}
+   })();
+   ```
+
+<Answers>
+<Answer>
+
+**I** only
+
+</Answer>
+<Answer>
+
+**II** only
+
+</Answer>
+<Answer>
+
+**I** and **II** only
+
+</Answer>
+<Answer>
+
+**I** and **III** only
+
+</Answer>
+<Answer correct>
+
+**I**, **II**, and **III**
+
+</Answer>
+</Answers>
+
+---
+
+## 13.
+
+What is returned when the expression `'x'.padStart(4, Number)` is evaluated?
+
+<Answers>
+<Answer>
+
+`'000x'`
+
+</Answer>
+<Answer>
+
+`'NaNx'`
+
+</Answer>
+<Answer>
+
+`'Numx'`
+
+</Answer>
+<Answer>
+
+`'Numberx'`
+
+</Answer>
+<Answer correct>
+
+None of the above
+
+</Answer>
+</Answers>
+
+---
+
+## 14.
+
+Consider the following code segment.
+
+```js
+const buffer = new ArrayBuffer([1, 2, 3, 4]);
+const array = new Float32Array(buffer);
+
+for (let i = 0; i < array.length; i++) {
+	array[i] = array[i] * array[i];
+}
+
+let sum = 0;
+
+for (let i = 0; i < array.length; i++) {
+	sum += array[i];
+}
+```
+
+What is the value of `sum` after the code is executed?
+
+<Answers>
+<Answer correct>
+
+`0`
+
+</Answer>
+<Answer>
+
+`10`
+
+</Answer>
+<Answer>
+
+`30`
+
+</Answer>
+<Answer>
+
+A `TypeError` is thrown because `ArrayBuffer` does not accept an array as an argument.
+
+</Answer>
+<Answer>
+
+None of the above.
+
+</Answer>
+</Answers>
+
+---
+
+## 15.
+
+Consider the following code segment.
+
+```js
+function set(value = 'hello') {
+	'use strict';
+	newValue = values;
+}
+
+set();
+```
+
+What is the result of calling the `set` function?
+
+<Answers>
+<Answer>
+
+The function executes successfully, creating a local variable `newValue` set to `'hello'`.
+
+</Answer>
+<Answer>
+
+The function executes successfully, but `newValue` remains `undefined` due to strict mode preventing implicit global variable creation.
+
+</Answer>
+<Answer>
+
+`newValue` is implicitly created on the global object and set to `'hello'`.
+
+</Answer>
+<Answer>
+
+A `ReferenceError` is thrown because `newValue` is not defined, and strict mode does not allow implicit global variable creation.
+
+</Answer>
+<Answer correct>
+
+A `SyntaxError` is thrown because strict mode is not allowed in a function with a default parameter.
+
+</Answer>
+</Answers>
+
+---
+
+## 16.
+
+Which of the following expressions is syntactically valid?
+
+1. `false.true = 'maybe'`
+2. `4.length = 5`
+3. `'it'.is = /far/`
+
+<Answers>
+<Answer>
+
+**I** only
+
+</Answer>
+<Answer>
+
+**II** only
+
+</Answer>
+<Answer>
+
+**III** only
+
+</Answer>
+<Answer>
+
+**I** and **II** only
+
+</Answer>
+<Answer correct>
+
+**I** and **III** only
+
+</Answer>
+</Answers>
+
+---
+
+## 17.
+
+---
+
+## 18.
+
+---
+
+## 19.
+
+---
+
+## 20.
+
+---
+
+## 21.
+
+---
+
+## 22.
+
+---
+
+## 23.
+
+---
+
+## 24.
+
+---
+
+## 25.
+
+---
+
+## Results
+
+You got **{$correctAnswers}** out of **{$answeredQuestions}** questions
+{#if $answeredQuestions < 25}
+with **{25 - $answeredQuestions}** unanswered{/if}.
+
+```
+
+```

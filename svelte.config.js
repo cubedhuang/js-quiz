@@ -18,6 +18,7 @@ const config = {
 			},
 			highlight: {
 				highlighter(src, language) {
+					src = src.replaceAll(/\t*\/\/ prettier-ignore\n/g, '');
 					if (language && hljs.getLanguage(language)) {
 						const formatted = hljs
 							.highlight(src, { language })

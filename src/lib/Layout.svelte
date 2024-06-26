@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import Answers from '$lib/Answers.svelte';
-	import { highlight } from '$lib/highlight';
-
 	onMount(() => {
 		console.log('%c👋 Hey there!', 'font-size: 3em; font-weight: bold;');
 		console.log(
@@ -63,9 +60,5 @@
 
 	.prose :global(ol) {
 		@apply list-[upper-roman];
-	}
-
-	.prose :global(ol li) {
-		@apply my-1;
 	}
 </style>
