@@ -855,10 +855,8 @@ Consider the following code segment.
 
 ```js
 const { proxy, revoke } = Proxy.revocable(['Hello!'], {
-	get: (target, prop) => prop
+	get: (target, prop) => prop.toString()
 });
-
-console.log(proxy.message);
 
 revoke();
 
@@ -870,27 +868,27 @@ What is printed to the console when the code is executed?
 <Answers>
 <Answer>
 
-`'message'` and `1`
+`1`
 
 </Answer>
 <Answer>
 
-`'message'` and `'Hello!'`
+`'Hello!'`
 
 </Answer>
 <Answer>
 
-`'message'` and `[object Array]`
+`[object Array]`
 
 </Answer>
 <Answer>
 
-`'message'` and `[object Object]`
+`Symbol(Symbol.toPrimitive)`
 
 </Answer>
 <Answer correct>
 
-`'message'` and a `TypeError` is thrown because arevoked proxy cannot be coerced to a string.
+A `TypeError` is thrown because a revoked proxy cannot be coerced to a string.
 
 </Answer>
 </Answers>
