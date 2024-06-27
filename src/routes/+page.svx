@@ -997,7 +997,7 @@ What is the result of evaluating the expression `&grave;${import.meta}&grave;` i
 `'undefined'`
 
 </Answer>
-<Answer>
+<Answer correct>
 
 A `TypeError` is thrown because `import.meta` cannot be coerced to a string.
 
@@ -1007,7 +1007,7 @@ A `TypeError` is thrown because `import.meta` cannot be coerced to a string.
 A `SyntaxError` is thrown because `import.meta` cannot be used in a template literal.
 
 </Answer>
-<Answer correct>
+<Answer>
 
 Whether `import.meta` may be stringified is dependent on the JavaScript engine.
 
