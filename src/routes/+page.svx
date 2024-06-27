@@ -674,7 +674,7 @@ A `ReferenceError` is thrown because `newValue` is not defined, and strict mode 
 </Answer>
 <Answer correct>
 
-A `SyntaxError` is thrown because strict mode is not allowed in a function with a default parameter.
+A `SyntaxError` is thrown because the `'use strict'` directive is not allowed in a function with a default parameter.
 
 </Answer>
 </Answers>
@@ -1107,10 +1107,12 @@ A `TypeError` is thrown because the global `Math` object does not have a `toStri
 
 ## Results
 
-You got **{$correctAnswers}** out of **{$answeredQuestions}** questions
+You got **{$correctAnswers}** out of **{$answeredQuestions}** questions!
 {#if $answeredQuestions < 25}
-(with **{25 - $answeredQuestions}** unanswered){/if}.
+There are **{25 - $answeredQuestions}** questions _unanswered_.
+{/if}
+🎉
 
-```
+This quiz was pretty fun to make. I tried to avoid a lot of the classic clichés like `0.1 + 0.2 === 0.3` and `[] + [] === ''`, and went a bit deeper into some language features.
 
-```
+I might add explanations for each question in the future, but for now, I hope you enjoyed!

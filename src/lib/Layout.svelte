@@ -21,7 +21,7 @@
 </svelte:head>
 
 <div
-	class="prose prose-gray prose-blue mx-auto mb-40 mt-20 px-8 dark:prose-invert lg:prose-lg"
+	class="prose prose-gray prose-blue mx-auto mb-64 mt-20 px-8 dark:prose-invert lg:prose-lg"
 >
 	<slot />
 </div>
