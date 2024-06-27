@@ -5,7 +5,13 @@
 @tailwind utilities;
 
 @layer base {
+	html {
+		color-scheme: light dark;
+	}
+
 	html.dark {
 		@apply bg-black;
+
+		color-scheme: dark light;
 	}
 }
