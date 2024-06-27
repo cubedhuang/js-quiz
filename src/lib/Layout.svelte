@@ -20,7 +20,9 @@
 	/>
 </svelte:head>
 
-<div class="prose prose-blue mx-auto mb-40 mt-20 px-8 lg:prose-lg">
+<div
+	class="prose prose-gray prose-blue mx-auto mb-40 mt-20 px-8 dark:prose-invert lg:prose-lg"
+>
 	<slot />
 </div>
 
@@ -47,10 +49,6 @@
 
 	.prose :global(pre code) {
 		@apply overflow-x-visible bg-inherit p-0 text-[1em];
-	}
-
-	.prose :global(code:not(pre code)) {
-		@apply text-[0.9375em] text-blue-600;
 	}
 
 	.prose :global(code:not(pre code)::before),

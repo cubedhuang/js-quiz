@@ -2,13 +2,16 @@
 	import { answeredQuestions, correctAnswers } from "$lib/stores";
 	import Answer from "$lib/Answer.svelte";
 	import Answers from "$lib/Answers.svelte";
+	import ThemeSelector from "$lib/ThemeSelector.svelte";
 </script>
 
 # How well do you _really_ know JavaScript?
 
-It's pretty well known that JavaScript has strange syntax and semantics.
-Let's see how familiar you are with them! This quiz's format is mostly
-inspired by [this Java quiz](https://goldenstack.net/blog/java_quiz).
+<ThemeSelector />
+
+It's pretty well known that JavaScript has strange syntax and semantics. Let's see how familiar you are with them! This quiz's format is mostly inspired by [this Java quiz](https://goldenstack.net/blog/java_quiz).
+
+Assume that code segments provided are executed in an isolated, modern ECMAScript environment.
 
 ---
 
@@ -22,8 +25,7 @@ function get(array) {
 }
 ```
 
-What is the result of calling the `get` function with the
-array `['first', 'second', 'third']`?
+What is the result of calling the `get` function with the array `['first', 'second', 'third']`?
 
 <Answers>
 <Answer correct>
@@ -535,7 +537,7 @@ Which of the following code segments will run and print `'Hello world!'` to the 
    		console.log('Hello world!');
    		return Object.create(null);
    	}
-   })();
+   }());
    ```
 
 <Answers>
@@ -590,7 +592,7 @@ What is returned when the expression `'x'.padStart(4, Number)` is evaluated?
 </Answer>
 <Answer>
 
-`'Numberx'`
+`'[obx'`
 
 </Answer>
 <Answer correct>
@@ -878,12 +880,12 @@ What is printed to the console when the code is executed?
 </Answer>
 <Answer>
 
-`[object Array]`
+`'[object Array]'`
 
 </Answer>
 <Answer>
 
-`Symbol(Symbol.toPrimitive)`
+`'Symbol(Symbol.toPrimitive)'`
 
 </Answer>
 <Answer correct>
@@ -897,25 +899,228 @@ A `TypeError` is thrown because a revoked proxy cannot be coerced to a string.
 
 ## 20.
 
+Consider the following code segment.
+
+```js
+const obj = {};
+obj['b'] = 1;
+obj['1'] = 2;
+obj['a'] = 3;
+const keys = Object.keys(obj);
+```
+
+What is the value of `keys` after the code is executed?
+
+<Answers>
+<Answer>
+
+`['1', 'a', 'b']`
+
+</Answer>
+<Answer>
+
+`['b', '1', 'a']`
+
+</Answer>
+<Answer>
+
+`[1, 'a', 'b']`
+
+</Answer>
+<Answer correct>
+
+`['1', 'b', 'a']`
+
+</Answer>
+<Answer>
+
+The answer is dependent on the JavaScript engine because the specification does not guarantee a deterministic order.
+
+</Answer>
+</Answers>
+
 ---
 
 ## 21.
+
+Consider the following code segment.
+
+```js
+const numbers = new Uint8Array([11, 1, 2]);
+const sorted = numbers.sort();
+```
+
+What is the value of `sorted` after the code is executed?
+
+<Answers>
+<Answer>
+
+`Array [1, 2, 11]`
+
+</Answer>
+<Answer correct>
+
+`Uint8Array [1, 2, 11]`
+
+</Answer>
+<Answer>
+
+`Array [1, 11, 2]`
+
+</Answer>
+<Answer>
+
+`Uint8Array [1, 11, 2]`
+
+</Answer>
+<Answer>
+
+A `TypeError` is thrown because `Uint8Array` does not have a `sort` method.
+
+</Answer>
+</Answers>
 
 ---
 
 ## 22.
 
+What is the result of evaluating the expression `&grave;${import.meta}&grave;` in a JavaScript module?
+
+<Answers>
+<Answer>
+
+`'[object Object]'`
+
+</Answer>
+<Answer>
+
+`'undefined'`
+
+</Answer>
+<Answer>
+
+A `TypeError` is thrown because `import.meta` cannot be coerced to a string.
+
+</Answer>
+<Answer>
+
+A `SyntaxError` is thrown because `import.meta` cannot be used in a template literal.
+
+</Answer>
+<Answer correct>
+
+Whether `import.meta` may be stringified is dependent on the JavaScript engine.
+
+</Answer>
+</Answers>
+
 ---
 
 ## 23.
+
+What are the values of `a`, `b`, and `c` after the following code is executed?
+
+```js
+const a = Number();
+const b = Number(undefined);
+const c = Number(null);
+```
+
+<Answers>
+<Answer>
+
+`0 0 0`
+
+</Answer>
+<Answer>
+
+`NaN NaN 0`
+
+</Answer>
+<Answer>
+
+`0 0 NaN`
+
+</Answer>
+<Answer correct>
+
+`0 NaN 0`
+
+</Answer>
+<Answer>
+
+A `TypeError` is thrown because `Number` does not accept `undefined` or `null` as arguments.
+
+</Answer>
+</Answers>
 
 ---
 
 ## 24.
 
+Which of the following `import` statements is syntactically valid, assuming that all referenced modules and exports exist?
+
+<Answers>
+<Answer>
+
+`import * from 'foo.js'`
+
+</Answer>
+<Answer>
+
+`import { * as bar } from 'foo.js'`
+
+</Answer>
+<Answer>
+
+`import default from 'foo.js'`
+
+</Answer>
+<Answer>
+
+`import { default } from 'foo.js'`
+
+</Answer>
+<Answer correct>
+
+`import { "default" as bar } from 'foo.js'`
+
+</Answer>
+</Answers>
+
 ---
 
 ## 25.
+
+What is the result of evaluating the expression `Math.toString()`?
+
+<Answers>
+<Answer>
+
+`'Math'`
+
+</Answer>
+<Answer correct>
+
+`'[object Math]'`
+
+</Answer>
+<Answer>
+
+`'[object Object]'`
+
+</Answer>
+<Answer>
+
+`'function Math() { [native code] }'`
+
+</Answer>
+<Answer>
+
+A `TypeError` is thrown because the global `Math` object does not have a `toString` method.
+
+</Answer>
+</Answers>
 
 ---
 
@@ -923,7 +1128,7 @@ A `TypeError` is thrown because a revoked proxy cannot be coerced to a string.
 
 You got **{$correctAnswers}** out of **{$answeredQuestions}** questions
 {#if $answeredQuestions < 25}
-with **{25 - $answeredQuestions}** unanswered{/if}.
+(with **{25 - $answeredQuestions}** unanswered){/if}.
 
 ```
 
