@@ -362,7 +362,7 @@ const array = [1, 2, 3].map(wrap);
 const items = array.toString();
 ```
 
-What is the value of `items`?
+What is the value of `items` after the code is executed?
 
 <Answers>
 <Answer correct>
@@ -401,59 +401,40 @@ Consider the following code segment.
 ```js
 let foo = { n: 1 };
 let bar = foo;
-let baz = foo;
 foo.x = foo = { n: 2 };
-bar.y = foo.y = bar = { n: 3 };
 ```
 
-What are the values of `foo`, `bar`, and `baz` after the code is executed? Assume that `≈` means "deeply equal" and that self-reference is circular.
+What are the values of `foo` and `bar` after the code is executed? Assume that `≈` indicates that the objects are structurally equivalent and that self-references are circular.
 
 <Answers>
 <Answer correct>
 
 ```js
-foo = { n: 2, y: { n: 3 } };
-bar = { n: 3 };
-baz = {
-	n: 1,
-	x: { n: 2, y: { n: 3 } },
-	y: { n: 3 }
-};
+foo ≈ { n: 2 }
+bar ≈ { n: 1, x: { n: 2 } }
 ```
 
 </Answer>
 <Answer>
 
 ```js
-foo = { n: 2, x: foo, y: bar };
-bar = { n: 3, y: bar };
-baz = { n: 1 };
+foo ≈ { n: 2, x: foo }
+bar ≈ { n: 1 }
 ```
 
 </Answer>
 <Answer>
 
 ```js
-foo = { n: 2, y: undefined };
-bar = { n: 3 };
-baz = {
-	n: 1,
-	x: { n: 2, y: undefined },
-	y: { n: 3 }
-};
+foo ≈ { n: 2 }
+bar ≈ { n: 1 }
 ```
 
 </Answer>
 <Answer>
 
 ```js
-foo = { n: 2 };
-bar = { n: 3, y: { n: 3 } };
-baz = {
-	n: 1,
-	x: { n: 2 },
-	y: { n: 3 }
-};
+foo ≈ bar ≈ { n: 2, x: foo }
 ```
 
 </Answer>
