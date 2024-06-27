@@ -1115,4 +1115,6 @@ There are **{25 - $answeredQuestions}** questions _unanswered_.
 
 This quiz was pretty fun to make. I tried to avoid a lot of the classic clichés like `0.1 + 0.2 === 0.3` and `[] + [] === ''`, and went a bit deeper into some language features.
 
+If you have any questions, suggestions, or feedback, you can reach out to me on Discord at `ilotani` or leave an issue on this site's [GitHub repository](https://github.com/cubedhuang/js-quiz).
+
 I might add explanations for each question in the future, but for now, I hope you enjoyed!
