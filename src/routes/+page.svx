@@ -643,7 +643,7 @@ Consider the following code segment.
 ```js
 function set(value = 'hello') {
 	'use strict';
-	newValue = values;
+	newValue = value;
 }
 
 set();
