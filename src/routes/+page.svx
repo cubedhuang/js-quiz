@@ -2,6 +2,7 @@
 	import { answeredQuestions, correctAnswers } from "$lib/stores";
 	import Answer from "$lib/Answer.svelte";
 	import Answers from "$lib/Answers.svelte";
+	import Explanation from "$lib/Explanation.svelte";
 	import ThemeSelector from "$lib/ThemeSelector.svelte";
 </script>
 
@@ -53,6 +54,15 @@ A `TypeError` is thrown because `at` is not an array method.
 A `TypeError` is thrown because the `at` method takes an integer argument.
 
 </Answer>
+<Explanation>
+
+The `at` method is a new method [introduced in ECMAScript 2022](https://github.com/tc39/proposal-relative-indexing-method) that allows you to access an element in an array by its index relative to the either the start or end of the array.
+
+Because [the `at` method](https://tc39.es/ecma262/#sec-array.prototype.at) should take an index, it calls the internal function `ToIntegerOrInfinity` on the argument. `ToIntegerOrInfinity` first converts the argument to a number, and if that number is `NaN`, it converts it to `0`.
+
+So `array.at('start')` is equivalent to `array.at(0)`, which returns `'first'`.
+
+</Explanation>
 </Answers>
 
 ---
@@ -95,6 +105,15 @@ What value will be printed to the console when the code is executed?
 `6`
 
 </Answer>
+<Explanation>
+
+This is more of a question about Unicode than JavaScript itself. The `length` property of a string returns the number of UTF-16 code units in the string, so we need to know how many code points are in the two emojis.
+
+The Unicode code point for `'👋'` is `U+1F44B`, which is represented by two UTF-16 code units, `0xD83D 0xDC4B`.
+
+`'👋🏾'` is represented by the code point for the waving hand `U+1F44B` plus the skin color modifier `U+1F3FE`, taking up four UTF-16 code units, `0xD83D 0xDC4B 0xD83C 0xDFFE`.
+
+</Explanation>
 </Answers>
 
 ---
@@ -129,6 +148,13 @@ Which of the following is **not** always a reserved word?
 `void`
 
 </Answer>
+<Explanation>
+
+`await` is a reserved word in strict mode and modules, but it is not a reserved word in non-strict mode or global, non-module scope. `await` is a contextual keyword, meaning its status as a reserved word depends on the context in which it is used.
+
+One reason for this is backwards compatibility. `await` was introduced in 2017, and making it a reserved word in all contexts would break existing code that uses `await` as an identifier. The rest of the keywords have almost always been reserved.
+
+</Explanation>
 </Answers>
 
 ---
@@ -171,6 +197,13 @@ A `TypeError` is thrown because `push` does not exist on `Array.prototype`.
 A `TypeError` is thrown because the reference to `this` when `push` is called is `undefined`.
 
 </Answer>
+<Explanation>
+
+`Array.prototype` is an array object itself. When we call `push('hello')` on `Array.prototype`, we're adding an element to this array.
+
+The `length` property of an array is automatically updated when elements are added or removed. After pushing `'hello'` to `Array.prototype`, its length becomes `1`.
+
+</Explanation>
 </Answers>
 
 ---
@@ -209,6 +242,13 @@ Which of the following code segments are syntactically valid (i.e., does not thr
 None of the above
 
 </Answer>
+<Explanation>
+
+1. `x++y` is parsed as `(x++) y` with the increment operator `++`. This is invalid.
+2. `x+++y` is parsed as `(x++) + y`. The postfix increment is applied to `x`, then the result is added to `y`.
+3. `x+++++y` is parsed as `(x++)++ + y`, but you can't apply `++` to the result of `x++`, a number.
+
+</Explanation>
 </Answers>
 
 ---
@@ -262,6 +302,17 @@ Of the values `a`, `b`, and `c`, which are `true`?
 None of the above
 
 </Answer>
+<Explanation>
+
+A [tagged template function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) receives the literal parts of the template as its first argument as an array and the interpolated values as subsequent arguments. The `raw` property of the literals array contains the raw string values.
+
+`a` is `false` because the `values` will be a new array each time a tagged template literal is called.
+
+`b` is `true` because the literals in a tagged template literal are cached and reused, so `history[0]` and `history[1]` are the same array.
+
+`c` is `false` because the literals array has two elements: `['Hello, ', '!']`.
+
+</Explanation>
 </Answers>
 
 ---
@@ -296,6 +347,13 @@ What is the result when the expression `parseFloat('Infinity') === Number.POSITI
 A `TypeError` is thrown because `parseFloat` only accepts finite numbers.
 
 </Answer>
+<Explanation>
+
+`parseFloat('Infinity')` does indeed parse the string `'Infinity'` and returns the same value as `Number.POSITIVE_INFINITY` value.
+
+JavaScript fortunately does have single representation for positive infinity.
+
+</Explanation>
 </Answers>
 
 ---
@@ -347,6 +405,15 @@ What is the value printed to the console when the code is executed?
 A `SyntaxError` is thrown because `try` blocks must have a corresponding `catch` block.
 
 </Answer>
+<Explanation>
+
+This question applies to most languages that have `try`/`finally` blocks.
+
+In a `try`/`finally` structure, the `finally` block must always execute, even if the function is returned from. If `return` is used in `finally`, it overrides the return value from the `try` block.
+
+Regardless of the value of `a / b`, the function always returns `1`, so the sum is `2`.
+
+</Explanation>
 </Answers>
 
 ---
@@ -390,6 +457,21 @@ What is the value of `items` after the code is executed?
 `'[object Object],[object Object],[object Object]'`
 
 </Answer>
+<Explanation>
+
+The `wrap` function is defined with curly braces `{}`. In arrow functions, curly braces define a function body, not an object literal, so this is equivalent to the following.
+
+```js
+const wrap = value => {
+	value;
+};
+```
+
+Without a `return` statement, the function implicitly returns `undefined`, so `[1, 2, 3].map(wrap)` results in `[undefined, undefined, undefined]`.
+
+When arrays are converted to strings, they implicitly call the `Array#join` function, which has a default argument of `','`. [In the `join` function](https://tc39.es/ecma262/#sec-array.prototype.join), `undefined` and `null` values are not shown, but the separators are still added, giving `',,'`.
+
+</Explanation>
 </Answers>
 
 ---
@@ -443,6 +525,13 @@ foo ≈ bar ≈ { n: 2, x: foo }
 A `ReferenceError` is thrown because `foo` is reassigned before it is accessed.
 
 </Answer>
+<Explanation>
+
+In the expression `foo.x = foo = { n: 2 }`, the left-hand side `foo.x` is evaluated first, creating a property `x` on the original object. Then `foo` is reassigned to a new object `{ n: 2 }`, but the `x` property is set on the original object that `bar` still references.
+
+After execution, `foo` references the new object `{ n: 2 }` and `bar` references the original object, which now looks like `{ n: 1, x: { n: 2 } }`.
+
+</Explanation>
 </Answers>
 
 ---
@@ -486,6 +575,13 @@ A `TypeError` is thrown because an `instanceof` check cannot be performed on a f
 A `RangeError` or `InternalError` (depending on the JavaScript engine) is thrown due to the maximum call stack size being exceeded.
 
 </Answer>
+<Explanation>
+
+When `new f()` is called, `new f()` returns `f` rather than the created object.
+
+The `instanceof` operator checks if the prototype chain of the left operand includes the `prototype` property of the right operand. In this case, the left becomes `f` rather than the object created by `new`. A function is not an instance of itself, so `false` is printed.
+
+</Explanation>
 </Answers>
 
 ---
@@ -547,6 +643,13 @@ Which of the following code segments will run and print `'Hello world!'` to the 
 **I**, **II**, and **III**
 
 </Answer>
+<Explanation>
+
+1. The constructor returns an object which becomes the result of the `new` expression instead of the newly created instance without errors.
+2. `class` is a valid method name.
+3. A class can extend `null`. This would normally throw when constructed, but the behavior is overriden if The constructor can still return an object to override the instance.
+
+</Explanation>
 </Answers>
 
 ---
@@ -581,6 +684,11 @@ What is returned when the expression `'x'.padStart(4, Number)` is evaluated?
 None of the above
 
 </Answer>
+<Explanation>
+
+When `padStart` is called, it first converts the padding to a string. `String(Number)` results in `'function Number() { [native code] }'`, so the expression evaluates to `'funx'`.
+
+</Explanation>
 </Answers>
 
 ---
@@ -632,6 +740,13 @@ A `TypeError` is thrown because `ArrayBuffer` does not accept an array as an arg
 None of the above.
 
 </Answer>
+<Explanation>
+
+`new ArrayBuffer([1, 2, 3, 4])` does not create a buffer with those values. [The `ArrayBuffer` constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer/ArrayBuffer) only takes a size in bytes, so it [tries to convert](https://tc39.es/ecma262/#sec-arraybuffer-length) `[1, 2, 3, 4]` to a non-negative integer. Because this is first converted to `NaN`, it initializes the `ArrayBuffer` with a size of 0.
+
+This gets passed to the `Float32Array` constructor, which creates an array of length 0. The loops don't do anything, so `sum` remains `0`.
+
+</Explanation>
 </Answers>
 
 ---
@@ -677,6 +792,11 @@ A `ReferenceError` is thrown because `newValue` is not defined, and strict mode 
 A `SyntaxError` is thrown because the `'use strict'` directive is not allowed in a function with a default parameter.
 
 </Answer>
+<Explanation>
+
+The [`'use strict'` directive](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#strict_mode_for_functions) can only be applied to the body of functions with simple parameters, i.e. without rest, default, or destructured parameters. This is a syntax error.
+
+</Explanation>
 </Answers>
 
 ---
@@ -715,6 +835,13 @@ Which of the following expressions is syntactically valid?
 **I** and **III** only
 
 </Answer>
+<Explanation>
+
+1. `false.true = 'maybe'` attempts to create a property `'true'` on the `false`. This won't throw a syntax error, but will lead to a type error because this assignment is not possible.
+2. `4.length` will throw a syntax error because `4.` will be treated as a literal number rather than the dot operator. Replacing it with `4..length` would be syntactically valid.
+3. Like case I, `'it'.is = /far/` attempts to create a property `'is'` on the string `'it'`, throwing a type error at runtime but not a syntax error.
+
+</Explanation>
 </Answers>
 
 ---
@@ -779,6 +906,15 @@ What three values are printed to the console when the code is executed?
 None of the above
 
 </Answer>
+<Explanation>
+
+`instanceof` checks the prototype chain of the left operand. `square` is an instance of `Polygon` because we didn't change the prototype of `Square.prototype`, so the prototype chain of `square` is still `square` &rarr; `Square.prototype` &rarr; `Polygon.prototype`.
+
+On the other hand, the `Square`'s prototype is set to `Rectangle`, so `super()` in the `Square` constructor calls the `Rectangle` constructor, setting `square.name` to `'Rectangle'`.
+
+See [this MDN article](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor#calling_super_in_a_constructor_bound_to_a_different_prototype) for more.
+
+</Explanation>
 </Answers>
 
 ---
@@ -828,6 +964,11 @@ What is the order in which the letters `A`, `B`, `C`, and `D` are printed to the
 A `SyntaxError` is thrown because a class may only have one static initializer block.
 
 </Answer>
+<Explanation>
+
+Static fields and blocks are executed in the order they appear in the class definition, so the order is simply `A B C D`.
+
+</Explanation>
 </Answers>
 
 ---
@@ -874,6 +1015,13 @@ What is printed to the console when the code is executed?
 A `TypeError` is thrown because a revoked proxy cannot be coerced to a string.
 
 </Answer>
+<Explanation>
+
+When a revocable proxy is `revoke` d, any operation on the proxy will throw a `TypeError`.
+
+In this case, the [string interpolation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#string_coercion) attempts to convert the proxy to a string, which involves accessing `proxy[Symbol.toPrimitive]`. Since the proxy has been revoked, this operation throws a TypeError.
+
+</Explanation>
 </Answers>
 
 ---
@@ -918,6 +1066,13 @@ What is the value of `keys` after the code is executed?
 The answer is dependent on the JavaScript engine because the specification does not guarantee a deterministic order.
 
 </Answer>
+<Explanation>
+
+The `Object.keys` method returns keys in the same order as a [`for...in` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in#description), which is consistent.
+
+The order is all non-negative integer keys (even though they are strings) in ascending order by value, then the remaining string keys in insertion order.
+
+</Explanation>
 </Answers>
 
 ---
@@ -959,6 +1114,11 @@ What is the value of `sorted` after the code is executed?
 A `TypeError` is thrown because `Uint8Array` does not have a `sort` method.
 
 </Answer>
+<Explanation>
+
+Although the `Array` sort method is based on string order by default, the [`TypedArray` sort method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/sort) is based on numeric order. The `Uint8Array` is sorted in ascending order, so `sorted` is `Uint8Array [1, 2, 11]`.
+
+</Explanation>
 </Answers>
 
 ---
@@ -993,6 +1153,13 @@ A `SyntaxError` is thrown because `import.meta` cannot be used in a template lit
 Whether `import.meta` may be stringified is dependent on the JavaScript engine.
 
 </Answer>
+<Explanation>
+
+The [`import.meta` object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta) has a `null` prototype, so it has no `[@@toPrimitive]()`, `toString()`, or `valueOf()` methods available to coerce it to a string.
+
+The same error occurs when trying to coerce `Object.create(null)` to a string.
+
+</Explanation>
 </Answers>
 
 ---
@@ -1033,6 +1200,11 @@ const c = Number(null);
 A `TypeError` is thrown because `Number` does not accept `undefined` or `null` as arguments.
 
 </Answer>
+<Explanation>
+
+[The `Number` constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/Number) is defined such that it coerces its argument to a number. `Number()` returns `0` as a default value. `Number(undefined)` and `Number(null)` follow the [normal coercion rules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number#number_coercion), resulting in `NaN` and `0` respectively.
+
+</Explanation>
 </Answers>
 
 ---
@@ -1067,6 +1239,19 @@ Which of the following `import` statements is syntactically valid, assuming that
 `import { "default" as bar } from 'foo.js'`
 
 </Answer>
+<Explanation>
+
+`import * from 'foo.js'` is invalid because JavaScript does not allow wildcard imports without namespacing.
+
+`import { * as bar } from 'foo.js'` is invalid because namespace imports do not have curly braces.
+
+`import default from 'foo.js'` and `import { default } from 'foo.js'` are invalid because `default` is a reserved word and cannot be used as an identifier.
+
+`import { "default" as bar } from 'foo.js'` is valid! It's equivalent to `import { default as bar } from 'foo.js'`.
+
+You can export and import from modules [`as "some string"`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#forms_of_import_declarations) to use an arbitrary name for the imported/exported value. Interestingly, most LSPs and parsers don't recognize this syntax, so Prettier fails and your editor might show an error even though the code runs fine.
+
+</Explanation>
 </Answers>
 
 ---
@@ -1101,6 +1286,11 @@ What is the result of evaluating the expression `Math.toString()`?
 A `TypeError` is thrown because the global `Math` object does not have a `toString` method.
 
 </Answer>
+<Explanation>
+
+The `Math` object is a built-in object that has a [`Symbol.toStringTag` property](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag) set to `'Math'`. When this object is coerced to a string, the `Object.prototype.toString` method is called, reading the `Math[@@toStringTag]` property and returning `'[object Math]'`.
+
+</Explanation>
 </Answers>
 
 ---
@@ -1116,5 +1306,3 @@ There are **{25 - $answeredQuestions}** questions _unanswered_.
 This quiz was pretty fun to make. I tried to avoid a lot of the classic clichés like `0.1 + 0.2 === 0.3` and `[] + [] === ''`, and went a bit deeper into some language features.
 
 If you have any questions, suggestions, or feedback, you can reach out to me on Discord at `ilotani` or leave an issue on this site's [GitHub repository](https://github.com/cubedhuang/js-quiz).
-
-I might add explanations for each question in the future, but for now, I hope you enjoyed!
